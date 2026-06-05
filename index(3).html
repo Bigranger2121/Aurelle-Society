@@ -1,0 +1,1379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Aurelle Society | Luxury Travel &amp; Private Event Concierge</title>
+<meta name="description" content="Aurelle Society is a private luxury concierge firm specializing in bespoke travel, high-end events, VIP experiences, and lifestyle services for discerning clients." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+/* ============================================================
+   MAISON VEYRA — Luxury Concierge
+   Design system: warm ivory + charcoal, restrained champagne gold.
+   Editorial serif (Cormorant Garamond) + refined sans (Manrope).
+   ============================================================ */
+
+:root{
+  --ink:#13100d;
+  --charcoal:#1d1916;
+  --charcoal-2:#26211c;
+  --espresso:#2c2118;
+  --ivory:#f6f1e8;
+  --ivory-2:#efe8db;
+  --paper:#fbf8f2;
+  --champagne:#d8c4a0;
+  --gold:#b08d57;
+  --gold-soft:#c2a36b;
+  --taupe:#b9aa97;
+  --stone:#867d72;
+  --stone-dk:#5b5249;
+  --line:rgba(176,141,87,.32);
+  --line-soft:rgba(45,38,32,.14);
+  --serif:'Cormorant Garamond', Georgia, serif;
+  --sans:'Manrope', system-ui, sans-serif;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--sans);
+  background:var(--ivory);
+  color:var(--charcoal);
+  font-weight:400;
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+
+/* subtle film grain over everything */
+body::after{
+  content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.04;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------- Typography ---------- */
+h1,h2,h3,h4{font-family:var(--serif);font-weight:400;line-height:1.06;letter-spacing:.01em;color:var(--charcoal)}
+.eyebrow{
+  font-family:var(--sans);font-size:.7rem;font-weight:600;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--gold);display:inline-block;
+}
+.eyebrow.light{color:var(--champagne)}
+p{font-weight:300;color:var(--stone-dk)}
+.lead{font-size:1.12rem;line-height:1.85;color:var(--stone-dk)}
+
+/* ---------- Layout helpers ---------- */
+.wrap{max-width:1240px;margin:0 auto;padding:0 40px}
+.narrow{max-width:760px}
+section{position:relative}
+.pad{padding:130px 0}
+.pad-sm{padding:90px 0}
+.center{text-align:center}
+.rule{width:54px;height:1px;background:var(--gold);margin:26px 0}
+.center .rule{margin:26px auto}
+.dark{background:var(--charcoal);color:var(--ivory)}
+.dark h1,.dark h2,.dark h3,.dark h4{color:var(--paper)}
+.dark p{color:rgba(246,241,232,.66)}
+.espresso{background:var(--espresso);color:var(--ivory)}
+.espresso h1,.espresso h2,.espresso h3{color:var(--paper)}
+.espresso p{color:rgba(246,241,232,.66)}
+.paper{background:var(--paper)}
+
+/* ---------- Buttons ---------- */
+.btn{
+  display:inline-flex;align-items:center;gap:.7em;cursor:pointer;border:none;background:none;
+  font-family:var(--sans);font-size:.72rem;font-weight:600;letter-spacing:.22em;
+  text-transform:uppercase;padding:17px 34px;transition:.45s var(--ease);position:relative;
+}
+.btn-solid{background:var(--gold);color:#fff}
+.btn-solid:hover{background:var(--charcoal);color:var(--champagne)}
+.btn-outline{border:1px solid var(--line);color:var(--charcoal);background:transparent}
+.btn-outline:hover{border-color:var(--gold);background:var(--gold);color:#fff}
+.dark .btn-outline,.espresso .btn-outline{border-color:rgba(216,196,160,.4);color:var(--champagne)}
+.dark .btn-outline:hover,.espresso .btn-outline:hover{background:var(--champagne);color:var(--charcoal);border-color:var(--champagne)}
+.btn-ghost{padding-left:0;padding-right:0;color:var(--gold)}
+.btn-ghost .ar{transition:.4s var(--ease)}
+.btn-ghost:hover .ar{transform:translateX(7px)}
+.dark .btn-ghost,.espresso .btn-ghost{color:var(--champagne)}
+
+/* link with animated underline */
+.ulink{position:relative;color:var(--gold);font-weight:500;letter-spacing:.04em}
+.ulink::after{content:"";position:absolute;left:0;bottom:-3px;width:0;height:1px;background:currentColor;transition:width .4s var(--ease)}
+.ulink:hover::after{width:100%}
+
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
+header.nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:26px 40px;transition:.5s var(--ease);
+}
+header.nav.scrolled{
+  padding:15px 40px;background:rgba(246,241,232,.92);
+  backdrop-filter:blur(14px);border-bottom:1px solid var(--line-soft);
+}
+.brand{font-family:var(--serif);font-size:1.55rem;letter-spacing:.16em;color:var(--ivory);transition:.5s var(--ease);text-transform:uppercase}
+.brand small{display:block;font-family:var(--sans);font-size:.5rem;letter-spacing:.5em;font-weight:600;color:var(--champagne);margin-top:2px;text-indent:.5em}
+header.nav.scrolled .brand{color:var(--charcoal)}
+header.nav.scrolled .brand small{color:var(--gold)}
+
+.menu{display:flex;align-items:center;gap:34px;list-style:none}
+.menu a{
+  font-size:.7rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(246,241,232,.85);transition:.4s var(--ease);position:relative;padding:4px 0;cursor:pointer;
+}
+header.nav.scrolled .menu a{color:var(--stone-dk)}
+.menu a::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:1px;background:var(--gold);transition:width .35s var(--ease)}
+.menu a:hover::after,.menu a.active::after{width:100%}
+.menu a:hover,.menu a.active{color:var(--gold)}
+header.nav:not(.scrolled) .menu a:hover,header.nav:not(.scrolled) .menu a.active{color:var(--champagne)}
+header.nav:not(.scrolled) .menu a:hover::after,header.nav:not(.scrolled) .menu a.active::after{background:var(--champagne)}
+
+.nav-cta{
+  border:1px solid rgba(216,196,160,.5);color:var(--champagne);
+  padding:11px 22px;font-size:.66rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
+  transition:.45s var(--ease);cursor:pointer;
+}
+.nav-cta:hover{background:var(--champagne);color:var(--charcoal)}
+header.nav.scrolled .nav-cta{border-color:var(--line);color:var(--gold)}
+header.nav.scrolled .nav-cta:hover{background:var(--gold);color:#fff;border-color:var(--gold)}
+
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:6px}
+.burger span{width:26px;height:1.5px;background:var(--ivory);transition:.4s var(--ease)}
+header.nav.scrolled .burger span{background:var(--charcoal)}
+
+/* mobile drawer */
+.drawer{
+  position:fixed;inset:0;z-index:1500;background:var(--charcoal);
+  display:flex;flex-direction:column;justify-content:center;align-items:center;gap:6px;
+  transform:translateY(-100%);transition:.6s var(--ease);
+}
+.drawer.open{transform:translateY(0)}
+.drawer a{
+  font-family:var(--serif);font-size:1.9rem;color:var(--ivory);letter-spacing:.04em;
+  padding:9px 0;cursor:pointer;transition:.3s var(--ease);
+}
+.drawer a:hover{color:var(--gold)}
+.drawer .close{position:absolute;top:30px;right:34px;font-size:2rem;color:var(--champagne);background:none;border:none;cursor:pointer;font-family:var(--serif)}
+.drawer .d-cta{margin-top:24px;border:1px solid var(--line);color:var(--champagne);padding:14px 30px;font-family:var(--sans);font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;font-weight:600}
+
+/* ============================================================
+   PAGE ROUTER
+   ============================================================ */
+.page{display:none;animation:pageIn .9s var(--ease)}
+.page.active{display:block}
+@keyframes pageIn{from{opacity:0}to{opacity:1}}
+
+/* ============================================================
+   ART-DIRECTED IMAGE PANELS  (gradient stand-ins for licensed photography)
+   ============================================================ */
+.art{position:relative;overflow:hidden;background-color:#211b15}
+.art::after{ /* grain + vignette */
+  content:"";position:absolute;inset:0;
+  background:
+    radial-gradient(120% 90% at 50% 0%, transparent 40%, rgba(0,0,0,.45) 100%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+  mix-blend-mode:overlay;opacity:.5;
+}
+.art .cap{
+  position:absolute;left:22px;bottom:18px;z-index:2;
+  font-family:var(--sans);font-size:.58rem;letter-spacing:.26em;text-transform:uppercase;
+  color:rgba(246,241,232,.62);font-weight:600;
+}
+.art .cap::before{content:"";display:inline-block;width:22px;height:1px;background:var(--champagne);margin-right:10px;vertical-align:middle}
+
+/* mood variants */
+.m-villa{background:radial-gradient(130% 120% at 78% 18%,#e7c98e 0%,#bb8b52 26%,#6f4d2f 60%,#2a1c12 100%)}
+.m-resort{background:radial-gradient(120% 130% at 25% 80%,#8fb6c0 0%,#4f7d86 34%,#2c4a52 62%,#13252a 100%)}
+.m-jet{background:linear-gradient(150deg,#3a4148 0%,#23282d 45%,#0e1113 100%)}
+.m-yacht{background:radial-gradient(120% 120% at 80% 12%,#cfe0e3 0%,#7fa0a6 30%,#3d5a60 64%,#152830 100%)}
+.m-dining{background:radial-gradient(120% 120% at 50% 22%,#e9b977 0%,#a4632f 40%,#5a2c18 72%,#23100a 100%)}
+.m-blacktie{background:radial-gradient(120% 120% at 50% 0%,#5a4a36 0%,#2e251a 45%,#100c08 100%)}
+.m-champagne{background:radial-gradient(120% 130% at 30% 18%,#f2dcae 0%,#d6b577 34%,#9c7a44 66%,#3c2c17 100%)}
+.m-wedding{background:radial-gradient(120% 120% at 70% 20%,#f4e7d6 0%,#d8bfa3 36%,#9b8068 68%,#3a2e24 100%)}
+.m-retreat{background:linear-gradient(155deg,#6f7a63 0%,#434b3a 44%,#1c2016 100%)}
+.m-city{background:linear-gradient(160deg,#4a4640 0%,#262320 48%,#0d0c0a 100%)}
+.m-interior{background:radial-gradient(120% 120% at 28% 24%,#d8c19a 0%,#a9885d 38%,#5d4631 70%,#241a12 100%)}
+.m-spa{background:linear-gradient(155deg,#bcae9a 0%,#7e7361 46%,#2f2a22 100%)}
+.m-night{background:radial-gradient(120% 120% at 60% 30%,#6a4f6e 0%,#3a2a44 42%,#15101c 100%)}
+.m-safari{background:linear-gradient(160deg,#caa45f 0%,#8a5f2e 42%,#3c2614 100%)}
+.m-ski{background:linear-gradient(160deg,#cfd7dc 0%,#8a99a3 42%,#3a444c 78%,#171c20 100%)}
+.m-art{background:radial-gradient(120% 120% at 70% 20%,#c98f6b 0%,#7d4a37 42%,#34201a 100%)}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{
+  min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;
+  background:
+    linear-gradient(180deg,rgba(19,16,13,.62) 0%,rgba(19,16,13,.35) 45%,rgba(19,16,13,.78) 100%),
+    radial-gradient(120% 110% at 76% 22%,#e3c489 0%,#b1824a 24%,#5c3f28 56%,#1a120c 100%);
+}
+.hero::after{
+  content:"";position:absolute;inset:0;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+  mix-blend-mode:overlay;opacity:.5;pointer-events:none;
+}
+.hero .wrap{position:relative;z-index:2}
+.hero .eyebrow{opacity:0;animation:rise 1s var(--ease) .3s forwards}
+.hero h1{
+  font-size:clamp(3rem,7.5vw,6.4rem);color:#fff;font-weight:300;
+  letter-spacing:.005em;margin:24px 0 0;max-width:15ch;
+  text-shadow:0 2px 40px rgba(0,0,0,.35);
+}
+.hero h1 span{display:block;opacity:0;animation:rise 1.1s var(--ease) forwards}
+.hero h1 span:nth-child(1){animation-delay:.45s}
+.hero h1 span:nth-child(2){animation-delay:.62s;font-style:italic;color:var(--champagne)}
+.hero p.sub{
+  color:rgba(246,241,232,.85);font-size:1.15rem;max-width:54ch;margin:30px 0 42px;font-weight:300;
+  opacity:0;animation:rise 1s var(--ease) .9s forwards;
+}
+.hero .cta-row{display:flex;gap:18px;flex-wrap:wrap;align-items:center;opacity:0;animation:rise 1s var(--ease) 1.1s forwards}
+@keyframes rise{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:translateY(0)}}
+.scrollcue{
+  position:absolute;bottom:34px;left:50%;transform:translateX(-50%);z-index:3;
+  font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(246,241,232,.6);
+  display:flex;flex-direction:column;align-items:center;gap:12px;opacity:0;animation:rise 1s ease 1.6s forwards;
+}
+.scrollcue .ln{width:1px;height:46px;background:linear-gradient(var(--champagne),transparent);animation:cue 2.4s ease-in-out infinite}
+@keyframes cue{0%,100%{transform:scaleY(.5);transform-origin:top;opacity:.4}50%{transform:scaleY(1);opacity:1}}
+
+/* ---------- Interior page hero header ---------- */
+.phead{
+  min-height:62vh;display:flex;align-items:flex-end;position:relative;overflow:hidden;padding-bottom:74px;
+}
+.phead::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(19,16,13,.5),rgba(19,16,13,.82))}
+.phead::after{
+  content:"";position:absolute;inset:0;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+  mix-blend-mode:overlay;opacity:.45;
+}
+.phead .wrap{position:relative;z-index:2}
+.phead .eyebrow{color:var(--champagne)}
+.phead h1{font-size:clamp(2.6rem,5.6vw,4.7rem);color:#fff;font-weight:300;max-width:18ch;margin-top:18px}
+.phead p{color:rgba(246,241,232,.82);max-width:58ch;margin-top:22px;font-size:1.1rem}
+
+/* ============================================================
+   REVEAL ANIMATIONS
+   ============================================================ */
+.reveal{opacity:0;transform:translateY(34px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.reveal.d1{transition-delay:.12s}.reveal.d2{transition-delay:.24s}.reveal.d3{transition-delay:.36s}.reveal.d4{transition-delay:.48s}
+
+/* ============================================================
+   INTRO / SPLIT
+   ============================================================ */
+.split{display:grid;grid-template-columns:1.05fr 1fr;gap:80px;align-items:center}
+.split.rev{grid-template-columns:1fr 1.05fr}
+.split .art{aspect-ratio:4/5;width:100%}
+.h-section{font-size:clamp(2.1rem,3.8vw,3.3rem);font-weight:300}
+.kicker{font-style:italic;color:var(--gold)}
+
+/* ============================================================
+   SERVICE CARDS
+   ============================================================ */
+.cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:34px}
+.scard{background:var(--paper);border:1px solid var(--line-soft);transition:.55s var(--ease);overflow:hidden}
+.scard:hover{transform:translateY(-8px);box-shadow:0 30px 60px -30px rgba(44,33,24,.4)}
+.scard .art{aspect-ratio:3/2}
+.scard .body{padding:34px 30px 36px}
+.scard h3{font-size:1.7rem;margin-bottom:14px}
+.scard p{font-size:.95rem;margin-bottom:22px}
+.scard .art img,.scard .art{transition:.7s var(--ease)}
+.scard:hover .art{filter:saturate(1.1) brightness(1.05)}
+
+/* ============================================================
+   DIFFERENTIATORS
+   ============================================================ */
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.diff{padding:48px 30px;border-right:1px solid rgba(216,196,160,.16)}
+.diff:last-child{border-right:none}
+.diff .no{font-family:var(--serif);font-size:1.1rem;color:var(--gold);font-style:italic;margin-bottom:20px}
+.diff h3{font-size:1.5rem;color:var(--paper);margin-bottom:14px}
+.diff p{font-size:.92rem}
+
+/* ============================================================
+   EXPERIENCES GRID
+   ============================================================ */
+.xgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.xtile{position:relative;aspect-ratio:1/1;overflow:hidden;cursor:default}
+.xtile.tall{grid-row:span 2;aspect-ratio:auto}
+.xtile .art{position:absolute;inset:0;transition:.8s var(--ease)}
+.xtile:hover .art{transform:scale(1.06)}
+.xtile .lbl{
+  position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;justify-content:flex-end;
+  padding:26px;background:linear-gradient(transparent 40%,rgba(19,16,13,.7));
+}
+.xtile .lbl .t{font-family:var(--serif);font-size:1.5rem;color:#fff;font-style:italic}
+.xtile .lbl .e{font-size:.58rem;letter-spacing:.26em;text-transform:uppercase;color:var(--champagne);font-weight:600;margin-bottom:6px}
+
+/* ============================================================
+   MEMBERSHIP
+   ============================================================ */
+.tiers{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.tier{border:1px solid rgba(216,196,160,.22);padding:40px 28px 36px;transition:.5s var(--ease);position:relative;background:rgba(255,255,255,.012)}
+.tier:hover{border-color:var(--gold);background:rgba(176,141,87,.06)}
+.tier.feature{border-color:var(--gold);background:rgba(176,141,87,.08)}
+.tier .tag{font-size:.58rem;letter-spacing:.28em;text-transform:uppercase;color:var(--champagne);font-weight:600}
+.tier h3{font-size:1.55rem;color:var(--paper);margin:14px 0 16px;font-weight:400}
+.tier ul{list-style:none;margin:20px 0 0}
+.tier li{font-size:.88rem;color:rgba(246,241,232,.7);padding:8px 0 8px 20px;position:relative;border-top:1px solid rgba(216,196,160,.1);font-weight:300}
+.tier li:first-of-type{border-top:none}
+.tier li::before{content:"";position:absolute;left:0;top:16px;width:6px;height:6px;border:1px solid var(--gold);transform:rotate(45deg)}
+.pill{display:inline-block;font-size:.68rem;letter-spacing:.04em;color:var(--champagne);font-weight:300;font-style:italic;font-family:var(--serif);font-size:1rem;margin-top:18px}
+
+/* ============================================================
+   TRUST
+   ============================================================ */
+.trust{display:grid;grid-template-columns:repeat(4,1fr);gap:50px 40px}
+.tcell .ic{width:42px;height:42px;margin-bottom:18px;color:var(--gold)}
+.tcell h4{font-size:1.25rem;margin-bottom:10px;font-weight:500}
+.tcell p{font-size:.9rem}
+
+/* ============================================================
+   CTA BAND
+   ============================================================ */
+.cta-band{text-align:center;padding:120px 0;position:relative;overflow:hidden}
+.cta-band h2{font-size:clamp(2.4rem,5vw,4rem);font-weight:300;max-width:18ch;margin:18px auto 0}
+.cta-band p{max-width:52ch;margin:24px auto 40px}
+
+/* ============================================================
+   SERVICE DETAIL LISTS
+   ============================================================ */
+.detail{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+.detail.rev{direction:rtl}
+.detail.rev>*{direction:ltr}
+.detail .art{aspect-ratio:1/1;width:100%}
+.detail h2{font-size:clamp(1.9rem,3.4vw,2.8rem);font-weight:300;margin-bottom:8px}
+.cols2{column-count:2;column-gap:36px;margin:26px 0 30px}
+.cols2 li{break-inside:avoid;list-style:none;font-size:.92rem;color:var(--stone-dk);padding:9px 0 9px 20px;position:relative;font-weight:300;border-bottom:1px solid var(--line-soft)}
+.cols2 li::before{content:"";position:absolute;left:0;top:17px;width:5px;height:5px;background:var(--gold);transform:rotate(45deg)}
+.darklist li{color:rgba(246,241,232,.7);border-bottom:1px solid rgba(216,196,160,.12)}
+
+/* process steps */
+.steps{counter-reset:s;display:grid;grid-template-columns:repeat(3,1fr);gap:2px;border:1px solid var(--line-soft)}
+.step{padding:42px 32px;counter-increment:s;border-right:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);background:var(--paper)}
+.step::before{content:"0" counter(s);font-family:var(--serif);font-style:italic;font-size:1.4rem;color:var(--gold);display:block;margin-bottom:16px}
+.step h4{font-size:1.25rem;margin-bottom:8px;font-weight:500}
+.step p{font-size:.88rem}
+
+/* principle list */
+.principles{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(216,196,160,.18);border:1px solid rgba(216,196,160,.18)}
+.principle{background:var(--espresso);padding:44px 38px}
+.principle .n{font-family:var(--serif);font-style:italic;color:var(--gold);font-size:1.2rem;margin-bottom:10px}
+.principle h4{color:var(--paper);font-size:1.35rem;font-weight:400}
+
+/* ============================================================
+   CONTACT FORM
+   ============================================================ */
+.formwrap{display:grid;grid-template-columns:.85fr 1.15fr;gap:70px;align-items:start}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px 28px}
+.field{display:flex;flex-direction:column}
+.field.full{grid-column:1/-1}
+.field label{font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--stone);font-weight:600;margin-bottom:9px}
+.field input,.field select,.field textarea{
+  font-family:var(--sans);font-size:.95rem;font-weight:300;color:var(--charcoal);
+  background:transparent;border:none;border-bottom:1px solid var(--line-soft);
+  padding:10px 2px;transition:.4s var(--ease);
+}
+.field textarea{resize:vertical;min-height:90px}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--gold)}
+.field select{appearance:none;cursor:pointer}
+.contact-note{font-size:.88rem;color:var(--stone-dk);font-style:italic;font-family:var(--serif);font-size:1.05rem;margin:30px 0;padding-left:22px;border-left:2px solid var(--gold)}
+.form-success{display:none;padding:40px;background:var(--espresso);color:var(--ivory);text-align:center;animation:pageIn .8s var(--ease)}
+.form-success.show{display:block}
+.form-success h3{color:var(--champagne);font-size:1.8rem;margin-bottom:12px}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer{background:var(--ink);color:rgba(246,241,232,.6);padding:96px 0 0}
+.f-top{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.3fr;gap:50px;padding-bottom:70px;border-bottom:1px solid rgba(216,196,160,.12)}
+.f-brand .brand{color:var(--ivory);font-size:1.6rem}
+.f-brand p{margin-top:22px;max-width:34ch;font-size:.9rem}
+.f-col h5{font-size:.64rem;letter-spacing:.26em;text-transform:uppercase;color:var(--champagne);font-weight:600;margin-bottom:22px}
+.f-col a{display:block;font-size:.9rem;color:rgba(246,241,232,.58);padding:7px 0;transition:.3s var(--ease);cursor:pointer;font-weight:300}
+.f-col a:hover{color:var(--champagne);padding-left:6px}
+.f-news p{font-size:.9rem;margin-bottom:18px}
+.news-form{display:flex;border-bottom:1px solid rgba(216,196,160,.3)}
+.news-form input{flex:1;background:none;border:none;color:var(--ivory);font-family:var(--sans);font-size:.9rem;padding:10px 0;font-weight:300}
+.news-form input:focus{outline:none}
+.news-form button{background:none;border:none;color:var(--champagne);cursor:pointer;font-size:1.2rem;padding:0 4px}
+.socials{display:flex;gap:18px;margin-top:26px}
+.socials a{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(246,241,232,.5);font-weight:600;transition:.3s;cursor:pointer}
+.socials a:hover{color:var(--champagne)}
+.f-bot{display:flex;justify-content:space-between;align-items:center;padding:30px 0;flex-wrap:wrap;gap:14px}
+.f-bot .legal{display:flex;gap:26px}
+.f-bot a,.f-bot span{font-size:.74rem;color:rgba(246,241,232,.42);font-weight:300;cursor:pointer}
+.f-bot a:hover{color:var(--champagne)}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media(max-width:1024px){
+  .grid4{grid-template-columns:repeat(2,1fr)}
+  .diff{border-bottom:1px solid rgba(216,196,160,.16)}
+  .diff:nth-child(2){border-right:none}
+  .tiers{grid-template-columns:repeat(2,1fr)}
+  .trust{grid-template-columns:repeat(2,1fr)}
+  .f-top{grid-template-columns:1fr 1fr}
+}
+@media(max-width:860px){
+  .menu,.nav-cta{display:none}
+  .burger{display:flex}
+  .wrap{padding:0 26px}
+  .pad{padding:90px 0}
+  .split,.split.rev,.detail,.formwrap{grid-template-columns:1fr;gap:44px}
+  .detail.rev{direction:ltr}
+  .cards3{grid-template-columns:1fr;gap:24px}
+  .xgrid{grid-template-columns:repeat(2,1fr)}
+  .xtile.tall{grid-row:auto;aspect-ratio:1/1}
+  .steps{grid-template-columns:1fr}
+  .step{border-right:none}
+  .cols2{column-count:1}
+  .form-grid{grid-template-columns:1fr}
+}
+@media(max-width:560px){
+  .tiers,.trust,.xgrid,.principles{grid-template-columns:1fr}
+  .f-top{grid-template-columns:1fr}
+  .hero h1{font-size:2.8rem}
+  .wrap{padding:0 22px}
+}
+</style>
+</head>
+<body>
+
+<!-- ============================ NAV ============================ -->
+<header class="nav" id="nav">
+  <div class="brand" data-route="home">Aurelle Society<small>Private Access</small></div>
+  <nav>
+    <ul class="menu">
+      <li><a data-route="home">Home</a></li>
+      <li><a data-route="about">About</a></li>
+      <li><a data-route="services">Services</a></li>
+      <li><a data-route="travel">Travel</a></li>
+      <li><a data-route="events">Events</a></li>
+      <li><a data-route="membership">Membership</a></li>
+      <li><a data-route="experiences">Experiences</a></li>
+      <li><a data-route="contact">Contact</a></li>
+    </ul>
+  </nav>
+  <button class="nav-cta" data-route="contact">Request Consultation</button>
+  <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+</header>
+
+<!-- ====================== MOBILE DRAWER ====================== -->
+<div class="drawer" id="drawer">
+  <button class="close" id="close">&times;</button>
+  <a data-route="home">Home</a>
+  <a data-route="about">About</a>
+  <a data-route="services">Services</a>
+  <a data-route="travel">Travel</a>
+  <a data-route="events">Events</a>
+  <a data-route="lifestyle">Lifestyle</a>
+  <a data-route="membership">Membership</a>
+  <a data-route="experiences">Experiences</a>
+  <a data-route="contact">Contact</a>
+  <button class="d-cta" data-route="contact">Request Consultation</button>
+</div>
+
+<main id="main">
+
+<!-- ======================================================================
+     HOME
+     ====================================================================== -->
+<section class="page active" id="page-home">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="wrap">
+      <span class="eyebrow light">Private Access &nbsp;·&nbsp; Curated Experiences</span>
+      <h1><span>Luxury Travel &amp; Private Experiences,</span><span>Perfectly Curated</span></h1>
+      <p class="sub">Aurelle Society designs bespoke travel, private events, and lifestyle experiences for clients who expect discretion, access, and flawless execution.</p>
+      <div class="cta-row">
+        <button class="btn btn-solid" data-route="contact">Request Private Consultation</button>
+        <button class="btn btn-ghost" data-route="services">Explore Services <span class="ar">&rarr;</span></button>
+      </div>
+    </div>
+    <div class="scrollcue">Scroll<div class="ln"></div></div>
+  </div>
+
+  <!-- BRAND INTRO -->
+  <section class="pad paper">
+    <div class="wrap split">
+      <div class="reveal">
+        <span class="eyebrow">For those who expect more than luxury</span>
+        <h2 class="h-section" style="margin-top:22px">Aurelle Society is a private concierge and <span class="kicker">experience design firm.</span></h2>
+        <div class="rule"></div>
+        <p class="lead">We specialize in luxury travel, high-end events, and personalized lifestyle services for discerning clients who value time, privacy, access, and seamless execution.</p>
+        <p style="margin-top:18px">From private island escapes and destination celebrations to executive retreats and VIP experiences, every detail is thoughtfully planned and personally managed.</p>
+        <div style="margin-top:34px"><button class="btn btn-outline" data-route="about">Discover Aurelle Society</button></div>
+      </div>
+      <div class="reveal d2"><div class="art m-villa"><span class="cap">Private Villa · Côte d'Azur</span></div></div>
+    </div>
+  </section>
+
+  <!-- SIGNATURE SERVICES -->
+  <section class="pad" style="background:var(--ivory-2)">
+    <div class="wrap">
+      <div class="center reveal" style="max-width:620px;margin:0 auto 64px">
+        <span class="eyebrow">Signature Services</span>
+        <h2 class="h-section" style="margin-top:18px">Three disciplines, one standard of service</h2>
+        <div class="rule"></div>
+      </div>
+      <div class="cards3">
+        <div class="scard reveal">
+          <div class="art m-jet"><span class="cap">Private Aviation</span></div>
+          <div class="body">
+            <h3>Luxury Travel Concierge</h3>
+            <p>Private villas, five-star resorts, yacht charters, private aviation, VIP airport services, and curated destination itineraries.</p>
+            <button class="btn btn-ghost" data-route="travel">Explore Travel <span class="ar">&rarr;</span></button>
+          </div>
+        </div>
+        <div class="scard reveal d2">
+          <div class="art m-blacktie"><span class="cap">Black-Tie Affair</span></div>
+          <div class="body">
+            <h3>Private Event Concierge</h3>
+            <p>Milestone celebrations, destination weddings, executive retreats, private dinners, and VIP gatherings, beautifully orchestrated.</p>
+            <button class="btn btn-ghost" data-route="events">Explore Events <span class="ar">&rarr;</span></button>
+          </div>
+        </div>
+        <div class="scard reveal d3">
+          <div class="art m-interior"><span class="cap">Elegant Interiors</span></div>
+          <div class="body">
+            <h3>Lifestyle Concierge</h3>
+            <p>Restaurant reservations, luxury gifting, wellness retreats, personal shopping, cultural access, and ongoing lifestyle support.</p>
+            <button class="btn btn-ghost" data-route="lifestyle">Explore Lifestyle <span class="ar">&rarr;</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY MAISON VEYRA -->
+  <section class="pad dark">
+    <div class="wrap">
+      <div class="center reveal" style="max-width:620px;margin:0 auto 60px">
+        <span class="eyebrow light">Why Aurelle Society</span>
+        <h2 class="h-section" style="margin-top:18px;color:var(--paper)">The Art of Effortless Luxury</h2>
+        <div class="rule"></div>
+      </div>
+      <div class="grid4">
+        <div class="diff reveal"><div class="no">i</div><h3>Private Access</h3><p>We open doors to exceptional destinations, venues, vendors, and experiences few can reach.</p></div>
+        <div class="diff reveal d2"><div class="no">ii</div><h3>Personalized Design</h3><p>Every request is tailored to your preferences, lifestyle, and expectations.</p></div>
+        <div class="diff reveal d3"><div class="no">iii</div><h3>Flawless Execution</h3><p>We manage the details, logistics, vendors, timing, and coordination, end to end.</p></div>
+        <div class="diff reveal d4"><div class="no">iv</div><h3>Discreet Service</h3><p>Privacy, professionalism, and trust are built into every engagement we accept.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED EXPERIENCES -->
+  <section class="pad paper">
+    <div class="wrap">
+      <div class="center reveal" style="max-width:620px;margin:0 auto 56px">
+        <span class="eyebrow">Featured Experiences</span>
+        <h2 class="h-section" style="margin-top:18px">Moments designed to be remembered</h2>
+        <div class="rule"></div>
+      </div>
+      <div class="xgrid reveal">
+        <div class="xtile tall"><div class="art m-resort"></div><div class="lbl"><span class="e">Travel</span><span class="t">Private Island Escapes</span></div></div>
+        <div class="xtile"><div class="art m-yacht"></div><div class="lbl"><span class="e">Travel</span><span class="t">Yacht Weekends</span></div></div>
+        <div class="xtile"><div class="art m-retreat"></div><div class="lbl"><span class="e">Corporate</span><span class="t">Executive Retreats</span></div></div>
+        <div class="xtile"><div class="art m-wedding"></div><div class="lbl"><span class="e">Events</span><span class="t">Destination Weddings</span></div></div>
+        <div class="xtile tall"><div class="art m-night"></div><div class="lbl"><span class="e">Access</span><span class="t">Red-Carpet Evenings</span></div></div>
+        <div class="xtile"><div class="art m-dining"></div><div class="lbl"><span class="e">Culinary</span><span class="t">Private Culinary Journeys</span></div></div>
+        <div class="xtile"><div class="art m-spa"></div><div class="lbl"><span class="e">Wellness</span><span class="t">Wellness Escapes</span></div></div>
+      </div>
+      <div class="center" style="margin-top:48px"><button class="btn btn-outline" data-route="experiences">View All Experiences</button></div>
+    </div>
+  </section>
+
+  <!-- MEMBERSHIP PREVIEW -->
+  <section class="pad espresso">
+    <div class="wrap">
+      <div class="center reveal" style="max-width:640px;margin:0 auto 56px">
+        <span class="eyebrow light">Private Membership</span>
+        <h2 class="h-section" style="margin-top:18px;color:var(--paper)">Concierge Support, Designed Around Your Life</h2>
+        <div class="rule"></div>
+        <p>For clients who prefer an ongoing relationship, membership offers priority access, curated planning, and a single trusted point of contact.</p>
+      </div>
+      <div class="tiers reveal">
+        <div class="tier"><span class="tag">Tier I</span><h3>Signature Travel Design</h3><p style="color:rgba(246,241,232,.6);font-size:.9rem">Occasional luxury travel support, bespoke and seamless.</p></div>
+        <div class="tier"><span class="tag">Tier II</span><h3>Private Event Atelier</h3><p style="color:rgba(246,241,232,.6);font-size:.9rem">Milestone events and private celebrations, fully managed.</p></div>
+        <div class="tier feature"><span class="tag">Tier III</span><h3>Executive Lifestyle</h3><p style="color:rgba(246,241,232,.6);font-size:.9rem">Ongoing concierge support for busy principals.</p></div>
+        <div class="tier"><span class="tag">By Invitation</span><h3>Founders Circle</h3><p style="color:rgba(246,241,232,.6);font-size:.9rem">Our highest-touch tier, for select private clients.</p></div>
+      </div>
+      <div class="center" style="margin-top:48px"><button class="btn btn-outline" data-route="membership">Explore Membership</button></div>
+    </div>
+  </section>
+
+  <!-- TRUST -->
+  <section class="pad paper">
+    <div class="wrap">
+      <div class="center reveal" style="max-width:600px;margin:0 auto 64px">
+        <span class="eyebrow">The Aurelle Standard</span>
+        <h2 class="h-section" style="margin-top:18px">Trusted with the details that matter most</h2>
+        <div class="rule"></div>
+      </div>
+      <div class="trust reveal">
+        <div class="tcell"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/></svg><h4>Discretion</h4><p>Privacy and confidentiality are foundational to every engagement.</p></div>
+        <div class="tcell"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><h4>End-to-End Management</h4><p>From first idea to final detail, every moment is personally overseen.</p></div>
+        <div class="tcell"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M12 3l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5z"/></svg><h4>Premium Access</h4><p>Established relationships with the world's finest vendors and venues.</p></div>
+        <div class="tcell"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M4 12h16M4 7h16M4 17h10"/></svg><h4>Clear Communication</h4><p>One dedicated point of contact, attentive and always responsive.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONSULTATION CTA -->
+  <section class="cta-band dark">
+    <div class="wrap reveal">
+      <span class="eyebrow light">Begin the Conversation</span>
+      <h2>Begin With a Private Consultation</h2>
+      <p>Tell us what you envision. We will help shape the experience, manage the details, and deliver a level of service designed around your lifestyle.</p>
+      <button class="btn btn-solid" data-route="contact">Request Consultation</button>
+    </div>
+  </section>
+</section>
+
+<!-- ======================================================================
+     ABOUT
+     ====================================================================== -->
+<section class="page" id="page-about">
+  <div class="phead m-interior">
+    <div class="wrap">
+      <span class="eyebrow">About Aurelle Society</span>
+      <h1>A private concierge firm built around access, taste, and precision.</h1>
+    </div>
+  </div>
+
+  <section class="pad paper">
+    <div class="wrap split">
+      <div class="reveal">
+        <span class="eyebrow">Our Story</span>
+        <h2 class="h-section" style="margin-top:20px">Created for clients who want the <span class="kicker">extraordinary</span> without the complexity.</h2>
+        <div class="rule"></div>
+        <p class="lead">Aurelle Society exists to bring together luxury travel, private events, lifestyle support, and trusted coordination under one refined concierge experience.</p>
+        <p style="margin-top:18px">We were founded on a single conviction: that the most valuable luxury is not a destination or an object, but the freedom of having everything handled, beautifully, by people you trust.</p>
+      </div>
+      <div class="reveal d2"><div class="art m-villa" style="aspect-ratio:4/5"><span class="cap">The Aurelle Aesthetic</span></div></div>
+    </div>
+  </section>
+
+  <section class="pad" style="background:var(--ivory-2)">
+    <div class="wrap split rev">
+      <div class="reveal"><div class="art m-spa" style="aspect-ratio:4/5"><span class="cap">Effortless by Design</span></div></div>
+      <div class="reveal d2">
+        <span class="eyebrow">Our Philosophy</span>
+        <h2 class="h-section" style="margin-top:20px">Luxury should feel effortless.</h2>
+        <div class="rule"></div>
+        <p class="lead">Every journey, event, and request should feel intentional, personal, and beautifully managed, from the first conversation to the final detail.</p>
+        <p style="margin-top:18px">We measure our work not by what we arrange, but by how little our clients ever have to think about it.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="pad dark">
+    <div class="wrap">
+      <div class="center reveal" style="max-width:600px;margin:0 auto 60px">
+        <span class="eyebrow light">What Makes Us Different</span>
+        <h2 class="h-section" style="margin-top:18px;color:var(--paper)">A different way of working</h2>
+        <div class="rule"></div>
+      </div>
+      <div class="grid4">
+        <div class="diff reveal"><div class="no">i</div><h3>Client, Not Packages</h3><p>We design around you, never around a fixed catalogue of offerings.</p></div>
+        <div class="diff reveal d2"><div class="no">ii</div><h3>Privacy First</h3><p>Discretion is not a feature. It is the foundation of everything we do.</p></div>
+        <div class="diff reveal d3"><div class="no">iii</div><h3>Strategy &amp; Detail</h3><p>We manage both the vision and the logistics that bring it to life.</p></div>
+        <div class="diff reveal d4"><div class="no">iv</div><h3>Experiences, Not Transactions</h3><p>We curate moments worth remembering for clients who expect excellence.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band espresso">
+    <div class="wrap reveal">
+      <span class="eyebrow light">An Introduction</span>
+      <h2>Schedule a Private Introduction</h2>
+      <p>We work with a select number of clients. We would be glad to learn whether Aurelle Society is the right fit for you.</p>
+      <button class="btn btn-solid" data-route="contact">Schedule a Private Introduction</button>
+    </div>
+  </section>
+</section>
+
+<!-- ======================================================================
+     SERVICES
+     ====================================================================== -->
+<section class="page" id="page-services">
+  <div class="phead m-blacktie">
+    <div class="wrap">
+      <span class="eyebrow">Our Services</span>
+      <h1>Bespoke concierge services for travel, events, and elevated living.</h1>
+    </div>
+  </div>
+
+  <section class="pad paper">
+    <div class="wrap detail reveal">
+      <div class="art m-jet"><span class="cap">Luxury Travel</span></div>
+      <div>
+        <span class="eyebrow">01 — Luxury Travel Concierge</span>
+        <h2 style="margin-top:14px">Travel, designed entirely around you</h2>
+        <div class="rule"></div>
+        <ul class="cols2">
+          <li>Custom itinerary planning</li><li>Private villas &amp; luxury resorts</li>
+          <li>Yacht charters</li><li>Private jet coordination</li>
+          <li>VIP airport services</li><li>Luxury transportation</li>
+          <li>Honeymoon &amp; anniversary travel</li><li>Group &amp; family travel</li>
+          <li>Family luxury vacations</li><li>Private excursions</li>
+        </ul>
+        <button class="btn btn-outline" data-route="travel">Explore Luxury Travel</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="pad" style="background:var(--ivory-2)">
+    <div class="wrap detail rev reveal">
+      <div class="art m-wedding"><span class="cap">Private Events</span></div>
+      <div>
+        <span class="eyebrow">02 — Private Event Concierge</span>
+        <h2 style="margin-top:14px">Celebrations, orchestrated with intention</h2>
+        <div class="rule"></div>
+        <ul class="cols2">
+          <li>Destination weddings</li><li>Private celebrations</li>
+          <li>Milestone birthdays</li><li>Anniversary events</li>
+          <li>Executive retreats</li><li>VIP dinners</li>
+          <li>Corporate hospitality</li><li>Product launches</li>
+          <li>Luxury vendor sourcing</li><li>Guest experience management</li>
+        </ul>
+        <button class="btn btn-outline" data-route="events">Explore Private Events</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="pad paper">
+    <div class="wrap detail reveal">
+      <div class="art m-interior"><span class="cap">Lifestyle</span></div>
+      <div>
+        <span class="eyebrow">03 — Lifestyle Concierge</span>
+        <h2 style="margin-top:14px">Refined support for everyday living</h2>
+        <div class="rule"></div>
+        <ul class="cols2">
+          <li>Restaurant reservations</li><li>Personal shopping</li>
+          <li>Luxury gifting</li><li>Spa &amp; wellness appointments</li>
+          <li>Cultural experiences</li><li>Private club coordination</li>
+          <li>Entertainment access</li><li>Home &amp; travel support</li>
+          <li>Special occasion planning</li><li>Ongoing lifestyle management</li>
+        </ul>
+        <button class="btn btn-outline" data-route="lifestyle">Explore Lifestyle Concierge</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="pad espresso">
+    <div class="wrap detail rev reveal">
+      <div class="art m-night"><span class="cap">VIP Access</span></div>
+      <div>
+        <span class="eyebrow light">04 — VIP Access &amp; Experiences</span>
+        <h2 style="margin-top:14px;color:var(--paper)">Doors that are rarely open</h2>
+        <div class="rule"></div>
+        <ul class="cols2 darklist">
+          <li>Sporting events</li><li>Concerts</li>
+          <li>Fashion events</li><li>Art fairs</li>
+          <li>Film festivals</li><li>Culinary experiences</li>
+          <li>Private tours</li><li>Exclusive nightlife</li>
+          <li>Luxury brand activations</li><li>Members-only access</li>
+        </ul>
+        <button class="btn btn-outline" data-route="experiences">View VIP Experiences</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band dark">
+    <div class="wrap reveal">
+      <span class="eyebrow light">Where It Begins</span>
+      <h2>Begin With a Private Consultation</h2>
+      <p>Share your vision and we will design a concierge experience tailored entirely to your needs.</p>
+      <button class="btn btn-solid" data-route="contact">Request Consultation</button>
+    </div>
+  </section>
+</section>
+
+<!-- ======================================================================
+     LUXURY TRAVEL
+     ====================================================================== -->
+<section class="page" id="page-travel">
+  <div class="phead m-resort">
+    <div class="wrap">
+      <span class="eyebrow">Luxury Travel</span>
+      <h1>Luxury travel, designed around you.</h1>
+      <p>From private escapes to once-in-a-lifetime journeys, Aurelle Society creates seamless travel experiences that are personal, polished, and unforgettable.</p>
+    </div>
+  </div>
+
+  <section class="pad paper">
+    <div class="wrap detail reveal">
+      <div>
+        <span class="eyebrow">Travel Services</span>
+        <h2 style="margin-top:14px">Every element, considered</h2>
+        <div class="rule"></div>
+        <ul class="cols2">
+          <li>Bespoke itinerary design</li><li>Private villas</li>
+          <li>Luxury resorts</li><li>Yacht charters</li>
+          <li>Private aviation</li><li>First-class coordination</li>
+          <li>VIP airport services</li><li>Private drivers</li>
+          <li>Fine dining reservations</li><li>Private guides</li>
+          <li>Luxury excursions</li><li>Wellness retreats</li>
+          <li>Honeymoons</li><li>Anniversary trips</li>
+          <li>Family luxury travel</li><li>Private group travel</li>
+        </ul>
+      </div>
+      <div class="art m-yacht" style="aspect-ratio:4/5"><span class="cap">Mediterranean Charter</span></div>
+    </div>
+  </section>
+
+  <section class="pad" style="background:var(--ivory-2)">
+    <div class="wrap">
+      <div class="center reveal" style="max-width:600px;margin:0 auto 56px">
+        <span class="eyebrow">Experience Types</span>
+        <h2 class="h-section" style="margin-top:18px">Where would you like to disappear?</h2>
+        <div class="rule"></div>
+      </div>
+      <div class="xgrid reveal">
+        <div class="xtile"><div class="art m-resort"></div><div class="lbl"><span class="e">Escape</span><span class="t">Beach &amp; Island</span></div></div>
+        <div class="xtile"><div class="art m-villa"></div><div class="lbl"><span class="e">Seasonal</span><span class="t">European Summers</span></div></div>
+        <div class="xtile"><div class="art m-safari"></div><div class="lbl"><span class="e">Expedition</span><span class="t">Safari Experiences</span></div></div>
+        <div class="xtile"><div class="art m-ski"></div><div class="lbl"><span class="e">Alpine</span><span class="t">Ski Retreats</span></div></div>
+        <div class="xtile"><div class="art m-spa"></div><div class="lbl"><span class="e">Restorative</span><span class="t">Wellness Getaways</span></div></div>
+        <div class="xtile"><div class="art m-city"></div><div class="lbl"><span class="e">Urbane</span><span class="t">City Weekends</span></div></div>
+        <div class="xtile"><div class="art m-dining"></div><div class="lbl"><span class="e">Palate</span><span class="t">Wine &amp; Culinary</span></div></div>
+        <div class="xtile"><div class="art m-yacht"></div><div class="lbl"><span class="e">Voyage</span><span class="t">Yacht Itineraries</span></div></div>
+        <div class="xtile"><div class="art m-retreat"></div><div class="lbl"><span class="e">Together</span><span class="t">Private Group Travel</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pad paper">
+    <div class="wrap">
+      <div class="center reveal" style="max-width:600px;margin:0 auto 56px">
+        <span class="eyebrow">The Travel Process</span>
+        <h2 class="h-section" style="margin-top:18px">Considered from first call to safe return</h2>
+        <div class="rule"></div>
+      </div>
+      <div class="steps reveal">
+        <div class="step"><h4>Private Consultation</h4><p>We listen closely to understand your taste, pace, and priorities.</p></div>
+        <div class="step"><h4>Experience Design</h4><p>We shape destinations, stays, and moments around your vision.</p></div>
+        <div class="step"><h4>Itinerary &amp; Vendors</h4><p>We coordinate every booking, transfer, and reservation.</p></div>
+        <div class="step"><h4>Confirmation &amp; Prep</h4><p>We confirm details and prepare you for a frictionless journey.</p></div>
+        <div class="step"><h4>On-Trip Support</h4><p>We remain on hand throughout, ready to adapt to anything.</p></div>
+        <div class="step"><h4>Post-Trip Follow-Up</h4><p>We refine and remember your preferences for what comes next.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band espresso">
+    <div class="wrap reveal">
+      <span class="eyebrow light">Your Next Journey</span>
+      <h2>Design My Travel Experience</h2>
+      <p>Tell us where your imagination leads. We will handle everything between here and there.</p>
+      <button class="btn btn-solid" data-route="contact">Design My Travel Experience</button>
+    </div>
+  </section>
+</section>
+
+<!-- ======================================================================
+     PRIVATE EVENTS
+     ====================================================================== -->
+<section class="page" id="page-events">
+  <div class="phead m-blacktie">
+    <div class="wrap">
+      <span class="eyebrow">Private Events</span>
+      <h1>Private events, beautifully orchestrated.</h1>
+      <p>Aurelle Society designs and manages elevated private events with discretion, creativity, and precision.</p>
+    </div>
+  </div>
+
+  <section class="pad paper">
+    <div class="wrap">
+      <div class="center reveal" style="max-width:620px;margin:0 auto 56px">
+        <span class="eyebrow">Occasions We Design</span>
+        <h2 class="h-section" style="margin-top:18px">For the moments that deserve more</h2>
+        <div class="rule"></div>
+      </div>
+      <div class="xgrid reveal">
+        <div class="xtile tall"><div class="art m-wedding"></div><div class="lbl"><span class="e">Signature</span><span class="t">Destination Weddings</span></div></div>
+        <div class="xtile"><div class="art m-champagne"></div><div class="lbl"><span class="e">Celebration</span><span class="t">Luxury Birthdays</span></div></div>
+        <div class="xtile"><div class="art m-dining"></div><div class="lbl"><span class="e">Intimate</span><span class="t">Private Dinners</span></div></div>
+        <div class="xtile"><div class="art m-retreat"></div><div class="lbl"><span class="e">Corporate</span><span class="t">Executive Retreats</span></div></div>
+        <div class="xtile tall"><div class="art m-night"></div><div class="lbl"><span class="e">Formal</span><span class="t">Black-Tie Events</span></div></div>
+        <div class="xtile"><div class="art m-interior"></div><div class="lbl"><span class="e">Milestone</span><span class="t">Anniversaries</span></div></div>
+        <div class="xtile"><div class="art m-villa"></div><div class="lbl"><span class="e">Gathering</span><span class="t">Social Weekends</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pad" style="background:var(--ivory-2)">
+    <div class="wrap detail rev reveal">
+      <div class="art m-champagne" style="aspect-ratio:1/1"><span class="cap">Champagne Reception</span></div>
+      <div>
+        <span class="eyebrow">Event Planning Services</span>
+        <h2 style="margin-top:14px">Full-service, from concept to final toast</h2>
+        <div class="rule"></div>
+        <ul class="cols2">
+          <li>Concept development</li><li>Venue sourcing</li>
+          <li>Vendor coordination</li><li>Guest experience planning</li>
+          <li>Luxury décor direction</li><li>Entertainment sourcing</li>
+          <li>Transportation coordination</li><li>Dining &amp; beverage planning</li>
+          <li>Event timeline management</li><li>On-site coordination</li>
+          <li>VIP guest services</li><li>Discreet logistics</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="pad dark">
+    <div class="wrap">
+      <div class="center reveal" style="max-width:560px;margin:0 auto 56px">
+        <span class="eyebrow light">Event Experience Principles</span>
+        <h2 class="h-section" style="margin-top:18px;color:var(--paper)">Our guiding principles</h2>
+        <div class="rule"></div>
+      </div>
+      <div class="principles reveal">
+        <div class="principle"><div class="n">i</div><h4>Every detail has purpose</h4></div>
+        <div class="principle"><div class="n">ii</div><h4>Every vendor is aligned</h4></div>
+        <div class="principle"><div class="n">iii</div><h4>Every guest touchpoint matters</h4></div>
+        <div class="principle"><div class="n">iv</div><h4>Every moment should feel effortless</h4></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band espresso">
+    <div class="wrap reveal">
+      <span class="eyebrow light">Let Us Begin</span>
+      <h2>Plan a Private Event</h2>
+      <p>From an intimate dinner to a destination celebration, we will bring your vision to life with quiet precision.</p>
+      <button class="btn btn-solid" data-route="contact">Plan a Private Event</button>
+    </div>
+  </section>
+</section>
+
+<!-- ======================================================================
+     LIFESTYLE CONCIERGE
+     ====================================================================== -->
+<section class="page" id="page-lifestyle">
+  <div class="phead m-interior">
+    <div class="wrap">
+      <span class="eyebrow">Lifestyle Concierge</span>
+      <h1>A more effortless way to live well.</h1>
+      <p>For clients who value time, access, and ease, Aurelle Society provides refined lifestyle support tailored to your personal needs.</p>
+    </div>
+  </div>
+
+  <section class="pad paper">
+    <div class="wrap detail reveal">
+      <div>
+        <span class="eyebrow">Lifestyle Services</span>
+        <h2 style="margin-top:14px">Your time, returned to you</h2>
+        <div class="rule"></div>
+        <ul class="cols2">
+          <li>Restaurant reservations</li><li>Private dining</li>
+          <li>Luxury gifting</li><li>Personal shopping</li>
+          <li>Wellness retreats</li><li>Spa appointments</li>
+          <li>Private trainers</li><li>Beauty services</li>
+          <li>Cultural events</li><li>Art experiences</li>
+          <li>Family experiences</li><li>Special occasion planning</li>
+          <li>Home support coordination</li><li>Travel preparation</li>
+          <li>VIP access coordination</li><li>Ongoing requests</li>
+        </ul>
+      </div>
+      <div class="art m-spa" style="aspect-ratio:4/5"><span class="cap">Wellness &amp; Restoration</span></div>
+    </div>
+  </section>
+
+  <section class="pad" style="background:var(--ivory-2)">
+    <div class="wrap split rev reveal">
+      <div><div class="art m-dining" style="aspect-ratio:4/5"><span class="cap">A Table Always Waiting</span></div></div>
+      <div>
+        <span class="eyebrow">The Difference</span>
+        <h2 class="h-section" style="margin-top:18px">One call. Everything handled.</h2>
+        <div class="rule"></div>
+        <p class="lead">Whether it is a last-minute reservation at a fully booked table, a thoughtful gift dispatched across the world, or the quiet coordination of your week, we are your single, trusted point of contact.</p>
+        <p style="margin-top:18px">Discreet, attentive, and always a step ahead, our role is to make the logistics of an exceptional life disappear.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band dark">
+    <div class="wrap reveal">
+      <span class="eyebrow light">At Your Service</span>
+      <h2>Request Lifestyle Concierge Support</h2>
+      <p>Tell us how you would like your days to feel. We will take it from there.</p>
+      <button class="btn btn-solid" data-route="contact">Request Lifestyle Support</button>
+    </div>
+  </section>
+</section>
+
+<!-- ======================================================================
+     MEMBERSHIP
+     ====================================================================== -->
+<section class="page" id="page-membership">
+  <div class="phead m-night">
+    <div class="wrap">
+      <span class="eyebrow">Private Membership</span>
+      <h1>Private concierge memberships for clients who expect more.</h1>
+      <p>Membership provides ongoing access to concierge support, curated planning, and priority service, anchored by a single trusted relationship.</p>
+    </div>
+  </div>
+
+  <section class="pad espresso">
+    <div class="wrap">
+      <div class="tiers reveal" style="grid-template-columns:repeat(4,1fr)">
+        <div class="tier">
+          <span class="tag">Tier I</span>
+          <h3>Signature Travel Design</h3>
+          <p style="color:rgba(246,241,232,.6);font-size:.88rem">For clients who want occasional luxury travel support.</p>
+          <ul>
+            <li>Bespoke travel planning</li>
+            <li>Resort &amp; villa coordination</li>
+            <li>Itinerary design</li>
+            <li>VIP reservations</li>
+            <li>Pre-trip planning</li>
+          </ul>
+          <span class="pill">Pricing available after private consultation</span>
+        </div>
+        <div class="tier">
+          <span class="tag">Tier II</span>
+          <h3>Private Event Atelier</h3>
+          <p style="color:rgba(246,241,232,.6);font-size:.88rem">For clients planning milestone events or private celebrations.</p>
+          <ul>
+            <li>Event concept planning</li>
+            <li>Venue &amp; vendor sourcing</li>
+            <li>Guest experience support</li>
+            <li>Timeline coordination</li>
+            <li>Luxury event execution</li>
+          </ul>
+          <span class="pill">Pricing available after private consultation</span>
+        </div>
+        <div class="tier feature">
+          <span class="tag">Tier III · Most Requested</span>
+          <h3>Executive Lifestyle</h3>
+          <p style="color:rgba(246,241,232,.6);font-size:.88rem">For busy executives and entrepreneurs who need ongoing support.</p>
+          <ul>
+            <li>Monthly concierge support</li>
+            <li>Travel planning</li>
+            <li>Dining reservations</li>
+            <li>Lifestyle coordination</li>
+            <li>VIP experiences</li>
+            <li>Priority response</li>
+          </ul>
+          <span class="pill">Pricing available after private consultation</span>
+        </div>
+        <div class="tier">
+          <span class="tag">By Invitation Only</span>
+          <h3>Founders Circle</h3>
+          <p style="color:rgba(246,241,232,.6);font-size:.88rem">Our highest tier, reserved for select private clients.</p>
+          <ul>
+            <li>Highest-touch concierge support</li>
+            <li>Priority planning</li>
+            <li>Exclusive experience sourcing</li>
+            <li>Private event &amp; travel support</li>
+            <li>Custom lifestyle management</li>
+          </ul>
+          <span class="pill">Strictly by invitation</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pad paper">
+    <div class="wrap split reveal">
+      <div>
+        <span class="eyebrow">Why Members Choose Us</span>
+        <h2 class="h-section" style="margin-top:18px">A relationship, not a <span class="kicker">transaction.</span></h2>
+        <div class="rule"></div>
+        <p class="lead">Membership means we already know your preferences, your people, and your standards, so each request is met with speed, taste, and absolute discretion.</p>
+        <p style="margin-top:18px">It is the difference between asking for something and simply knowing it is taken care of.</p>
+      </div>
+      <div><div class="art m-villa" style="aspect-ratio:4/5"><span class="cap">A Standing Relationship</span></div></div>
+    </div>
+  </section>
+
+  <section class="cta-band dark">
+    <div class="wrap reveal">
+      <span class="eyebrow light">Membership Enquiries</span>
+      <h2>Apply for Membership</h2>
+      <p>Membership is offered to a limited number of clients each year. We invite you to begin the conversation.</p>
+      <button class="btn btn-solid" data-route="contact">Apply for Membership</button>
+    </div>
+  </section>
+</section>
+
+<!-- ======================================================================
+     EXPERIENCES
+     ====================================================================== -->
+<section class="page" id="page-experiences">
+  <div class="phead m-champagne">
+    <div class="wrap">
+      <span class="eyebrow">Curated Experiences</span>
+      <h1>Curated experiences for exceptional moments.</h1>
+    </div>
+  </div>
+
+  <section class="pad paper">
+    <div class="wrap">
+      <div class="reveal" style="margin-bottom:34px"><span class="eyebrow">Travel Experiences</span></div>
+      <div class="xgrid reveal">
+        <div class="xtile tall"><div class="art m-resort"></div><div class="lbl"><span class="e">Seclusion</span><span class="t">Private Island Retreats</span></div></div>
+        <div class="xtile"><div class="art m-yacht"></div><div class="lbl"><span class="e">At Sea</span><span class="t">Yacht Weekends</span></div></div>
+        <div class="xtile"><div class="art m-villa"></div><div class="lbl"><span class="e">Seasonal</span><span class="t">European Summers</span></div></div>
+        <div class="xtile"><div class="art m-safari"></div><div class="lbl"><span class="e">Wild</span><span class="t">Safari Journeys</span></div></div>
+        <div class="xtile"><div class="art m-ski"></div><div class="lbl"><span class="e">Alpine</span><span class="t">Ski Chalets</span></div></div>
+        <div class="xtile"><div class="art m-spa"></div><div class="lbl"><span class="e">Renewal</span><span class="t">Wellness Escapes</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pad" style="background:var(--ivory-2)">
+    <div class="wrap">
+      <div class="reveal" style="margin-bottom:34px"><span class="eyebrow">Event Experiences</span></div>
+      <div class="xgrid reveal">
+        <div class="xtile"><div class="art m-wedding"></div><div class="lbl"><span class="e">Signature</span><span class="t">Destination Weddings</span></div></div>
+        <div class="xtile"><div class="art m-champagne"></div><div class="lbl"><span class="e">Milestone</span><span class="t">Luxury Birthdays</span></div></div>
+        <div class="xtile tall"><div class="art m-retreat"></div><div class="lbl"><span class="e">Corporate</span><span class="t">Executive Retreats</span></div></div>
+        <div class="xtile"><div class="art m-dining"></div><div class="lbl"><span class="e">Intimate</span><span class="t">VIP Dinners</span></div></div>
+        <div class="xtile"><div class="art m-interior"></div><div class="lbl"><span class="e">Private</span><span class="t">Private Celebrations</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pad espresso">
+    <div class="wrap">
+      <div class="reveal" style="margin-bottom:34px"><span class="eyebrow light">VIP Access Experiences</span></div>
+      <div class="xgrid reveal">
+        <div class="xtile"><div class="art m-night"></div><div class="lbl"><span class="e">Live</span><span class="t">Concerts</span></div></div>
+        <div class="xtile tall"><div class="art m-retreat"></div><div class="lbl"><span class="e">Field-Side</span><span class="t">Sporting Events</span></div></div>
+        <div class="xtile"><div class="art m-city"></div><div class="lbl"><span class="e">Front Row</span><span class="t">Fashion Weeks</span></div></div>
+        <div class="xtile"><div class="art m-blacktie"></div><div class="lbl"><span class="e">Premiere</span><span class="t">Film Festivals</span></div></div>
+        <div class="xtile"><div class="art m-art"></div><div class="lbl"><span class="e">Collected</span><span class="t">Art Fairs</span></div></div>
+        <div class="xtile"><div class="art m-dining"></div><div class="lbl"><span class="e">Tasting</span><span class="t">Culinary Events</span></div></div>
+        <div class="xtile"><div class="art m-night"></div><div class="lbl"><span class="e">After Dark</span><span class="t">Private Nightlife</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pad paper">
+    <div class="wrap">
+      <div class="reveal" style="margin-bottom:34px"><span class="eyebrow">Lifestyle Experiences</span></div>
+      <div class="xgrid reveal">
+        <div class="xtile"><div class="art m-spa"></div><div class="lbl"><span class="e">Restore</span><span class="t">Wellness Weekends</span></div></div>
+        <div class="xtile"><div class="art m-dining"></div><div class="lbl"><span class="e">Savor</span><span class="t">Fine Dining</span></div></div>
+        <div class="xtile"><div class="art m-city"></div><div class="lbl"><span class="e">Acquire</span><span class="t">Luxury Shopping</span></div></div>
+        <div class="xtile"><div class="art m-art"></div><div class="lbl"><span class="e">Discover</span><span class="t">Cultural Tours</span></div></div>
+        <div class="xtile"><div class="art m-villa"></div><div class="lbl"><span class="e">Together</span><span class="t">Private Family Experiences</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band dark">
+    <div class="wrap reveal">
+      <span class="eyebrow light">Imagine It</span>
+      <h2>Create My Experience</h2>
+      <p>If you can imagine it, we can arrange it. Tell us what you have in mind.</p>
+      <button class="btn btn-solid" data-route="contact">Create My Experience</button>
+    </div>
+  </section>
+</section>
+
+<!-- ======================================================================
+     CONTACT
+     ====================================================================== -->
+<section class="page" id="page-contact">
+  <div class="phead m-villa">
+    <div class="wrap">
+      <span class="eyebrow">Private Consultation</span>
+      <h1>Request a private consultation.</h1>
+      <p>Share what you are envisioning. Aurelle Society will review your request and respond with the next step in creating a tailored concierge experience.</p>
+    </div>
+  </div>
+
+  <section class="pad paper">
+    <div class="wrap formwrap">
+      <div class="reveal">
+        <span class="eyebrow">The Aurelle Promise</span>
+        <h2 class="h-section" style="margin-top:18px;font-size:2.2rem">Discretion in every detail</h2>
+        <div class="rule"></div>
+        <p class="contact-note">Aurelle Society works with select clients to ensure every engagement receives the highest level of attention, discretion, and service.</p>
+        <p style="font-size:.92rem">Every inquiry is read personally and held in confidence. We typically respond within one business day to arrange an introductory conversation.</p>
+        <div style="margin-top:40px">
+          <p style="font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--stone);font-weight:600;margin-bottom:8px">By Appointment</p>
+          <p style="font-family:var(--serif);font-size:1.3rem;color:var(--charcoal)">concierge@aurellesociety.com</p>
+        </div>
+      </div>
+
+      <div>
+        <form id="consult-form" class="reveal d2">
+          <div class="form-grid">
+            <div class="field"><label>Full Name</label><input type="text" required></div>
+            <div class="field"><label>Email Address</label><input type="email" required></div>
+            <div class="field"><label>Phone Number</label><input type="tel"></div>
+            <div class="field"><label>Location</label><input type="text"></div>
+            <div class="field">
+              <label>Service Interest</label>
+              <select>
+                <option value="">Select an option</option>
+                <option>Luxury Travel</option>
+                <option>Private Events</option>
+                <option>Lifestyle Concierge</option>
+                <option>VIP Access</option>
+                <option>Membership</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="field"><label>Desired Date or Timeframe</label><input type="text" placeholder="e.g. Autumn 2026"></div>
+            <div class="field">
+              <label>Estimated Budget Range</label>
+              <select>
+                <option value="">Select a range</option>
+                <option>Under $25,000</option>
+                <option>$25,000 – $75,000</option>
+                <option>$75,000 – $150,000</option>
+                <option>$150,000 – $500,000</option>
+                <option>$500,000+</option>
+                <option>Prefer to discuss</option>
+              </select>
+            </div>
+            <div class="field"><label>Guests or Travelers</label><input type="text" placeholder="Number of people"></div>
+            <div class="field full"><label>Destination or Event Location</label><input type="text"></div>
+            <div class="field full"><label>Tell Us About Your Request</label><textarea placeholder="Share as much or as little as you wish — what you envision, the occasion, and what would make it exceptional."></textarea></div>
+            <div class="field">
+              <label>Preferred Contact Method</label>
+              <select>
+                <option value="">Select an option</option>
+                <option>Email</option>
+                <option>Phone</option>
+                <option>Text Message</option>
+              </select>
+            </div>
+          </div>
+          <div style="margin-top:38px"><button type="submit" class="btn btn-solid">Submit Private Request</button></div>
+        </form>
+        <div class="form-success" id="form-success">
+          <h3>Thank you.</h3>
+          <p style="color:rgba(246,241,232,.78)">Your request has been received in confidence. A member of the Aurelle Society team will be in touch shortly to arrange your private consultation.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>
+
+</main>
+
+<!-- ============================ FOOTER ============================ -->
+<footer>
+  <div class="wrap">
+    <div class="f-top">
+      <div class="f-brand">
+        <div class="brand">Aurelle Society<small>Private Access</small></div>
+        <p>Aurelle Society is a private luxury concierge firm specializing in bespoke travel, high-end events, and lifestyle experiences for discerning clients.</p>
+        <div class="socials">
+          <a>Instagram</a><a>LinkedIn</a><a>Journal</a>
+        </div>
+      </div>
+      <div class="f-col">
+        <h5>Aurelle</h5>
+        <a data-route="home">Home</a>
+        <a data-route="about">About</a>
+        <a data-route="membership">Membership</a>
+        <a data-route="experiences">Experiences</a>
+        <a data-route="contact">Contact</a>
+      </div>
+      <div class="f-col">
+        <h5>Services</h5>
+        <a data-route="travel">Luxury Travel</a>
+        <a data-route="events">Private Events</a>
+        <a data-route="lifestyle">Lifestyle Concierge</a>
+        <a data-route="services">VIP Access</a>
+        <a data-route="services">All Services</a>
+      </div>
+      <div class="f-col f-news">
+        <h5>The Aurelle Journal</h5>
+        <p>Occasional notes on extraordinary places, private access, and the art of living well. By invitation.</p>
+        <form class="news-form" id="news-form">
+          <input type="email" placeholder="Your email address" aria-label="Email">
+          <button type="submit" aria-label="Subscribe">&rarr;</button>
+        </form>
+      </div>
+    </div>
+    <div class="f-bot">
+      <span>© <span id="year"></span> Aurelle Society. All rights reserved.</span>
+      <div class="legal">
+        <a>Privacy Policy</a>
+        <a>Terms</a>
+        <a data-route="contact">Request Consultation</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ---------- Router ---------- */
+const pages = document.querySelectorAll('.page');
+const navLinks = document.querySelectorAll('.menu a');
+function go(route){
+  const target = document.getElementById('page-'+route);
+  if(!target) return;
+  pages.forEach(p=>p.classList.remove('active'));
+  target.classList.add('active');
+  navLinks.forEach(a=>a.classList.toggle('active', a.dataset.route===route));
+  window.scrollTo({top:0,behavior:'instant'});
+  history.replaceState(null,'','#'+route);
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY>60);
+  setTimeout(runReveal, 40);
+}
+document.addEventListener('click', e=>{
+  const el = e.target.closest('[data-route]');
+  if(el){ e.preventDefault(); go(el.dataset.route); closeDrawer(); }
+});
+
+/* ---------- Sticky nav ---------- */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', ()=>{
+  nav.classList.toggle('scrolled', window.scrollY>60);
+});
+
+/* ---------- Mobile drawer ---------- */
+const drawer = document.getElementById('drawer');
+function closeDrawer(){ drawer.classList.remove('open'); }
+document.getElementById('burger').addEventListener('click', ()=>drawer.classList.add('open'));
+document.getElementById('close').addEventListener('click', closeDrawer);
+
+/* ---------- Scroll reveal ---------- */
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target);} });
+},{threshold:.12, rootMargin:'0px 0px -8% 0px'});
+function runReveal(){
+  document.querySelectorAll('.page.active .reveal:not(.in)').forEach(el=>io.observe(el));
+}
+
+/* ---------- Forms ---------- */
+document.getElementById('consult-form').addEventListener('submit', e=>{
+  e.preventDefault();
+  e.target.style.display='none';
+  document.getElementById('form-success').classList.add('show');
+  window.scrollTo({top:document.getElementById('form-success').offsetTop-160,behavior:'smooth'});
+});
+document.getElementById('news-form').addEventListener('submit', e=>{
+  e.preventDefault();
+  const inp = e.target.querySelector('input');
+  inp.value=''; inp.placeholder='Thank you — you are subscribed.';
+});
+
+/* ---------- Init ---------- */
+document.getElementById('year').textContent=new Date().getFullYear();
+const initial=(location.hash||'#home').slice(1);
+go(document.getElementById('page-'+initial)?initial:'home');
+runReveal();
+</script>
+</body>
+</html>
